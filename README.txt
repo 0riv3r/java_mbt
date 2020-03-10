@@ -4,6 +4,13 @@ https://github.com/namvdo/data-structures-and-algorithms-in-java/blob/master/bin
 
 https://github.com/microsoft/vscode-java-test/issues/851
 
+
+Launch the model editor
+======================
+java -jar C:\workspace\bst\lib\graphwalker-studio-4.2.0.jar
+open http://localhost:9090/studio.html in a web browser.
+
+
 generate offline testcase
 =========================
 java -jar graphwalker-cli-4.2.0.jar offline -m C:\workspace\bst\bin\resources\model.json --unvisited --verbose "random(edge_coverage(100))"

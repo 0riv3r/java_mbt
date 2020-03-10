@@ -1,5 +1,8 @@
+import java.util.ArrayList;
+
 /**
  * Binary Serach Tree class
+ * 
  * @param <T>
  */
 public class Bst<T extends Comparable<T>> {
@@ -38,10 +41,11 @@ public class Bst<T extends Comparable<T>> {
         else if (value.compareTo(node.element) > 0) {
             node.right = insert(node.right, value);
         }
-        /** If the value already exists in the tree, return null. */
-        else if (value.compareTo(node.element) == 0) {
-            return null;
-        }
+        /** 
+         * A new node is created, or
+         * a node with this value already exists in the tree.
+         * return this node
+         * */
         return node;
 
     }
@@ -51,16 +55,21 @@ public class Bst<T extends Comparable<T>> {
         nodeCount++;
     }
 
-    public void display(Node node) {
+    private ArrayList<Integer> listNodes(Node node, ArrayList<Integer> lstNodes) {
         if (node != null) {
             /** recursively call 'display' on the left sub-tree */
-            display(node.left);
-            /** prints the value at the current node */
-            System.out.println("The current node value is " + node.element);
+            listNodes(node.left, lstNodes);
+            /** adds the value at the current node */
+            lstNodes.add((Integer) node.element);
             /** recursively call 'display' on the right subtree. */
-            display(node.right);
+            listNodes(node.right, lstNodes);
         }
+        return(lstNodes);
+    }
 
+    public ArrayList<Integer> listTreeNodes() {
+        ArrayList<Integer> lstNodes = new ArrayList<Integer>();
+        return listNodes(root, lstNodes);
     }
 
     private boolean contains(Node node, T value) {
@@ -105,11 +114,11 @@ public class Bst<T extends Comparable<T>> {
         binarySearhTree.add(28);
         binarySearhTree.add(72);
         binarySearhTree.add(1);
+        binarySearhTree.add(12);
         System.out.println("Is 12 in the tree? " + binarySearhTree.containValue(12));
         System.out.println("Is 47 in the tree? " + binarySearhTree.containValue(47));
-        binarySearhTree.display(binarySearhTree.root);
         System.out.println("The smallest value in the tree is: " + binarySearhTree.smallest(binarySearhTree.root));
         System.out.println("The largest value in the tree is: " + binarySearhTree.largest(binarySearhTree.root));
-
+        System.out.println(binarySearhTree.listTreeNodes());
     }
 }
